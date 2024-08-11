@@ -1,47 +1,53 @@
-    
+
 const c = document.getElementById("myCanvas");
-// Розміри області перегляду (viewport)
+
 let viewportWidth = window.innerWidth;
 let viewportHeight = window.innerHeight;
-console.log(`Viewport width: ${viewportWidth}, height: ${viewportHeight}`);
+const SIZE_PC = 500;
+const SIZE_PHONE = 320;
 
+setCanvasSize();
+
+const ctx = c.getContext("2d");
 
 let COUNT_BLOCKS = 10;
-
-if (viewportWidth > 490) {
-    c.width = 500;
-    c.height = 500;
-    
-} else {
-    c.width = 320;
-    c.height = 320;
-}
-
-window.addEventListener('resize', function() {
-    location.reload();
-});
-
 
 const btnUp = document.getElementById('btn-up');
 const btnLeft = document.getElementById('btn-left');
 const btnRight = document.getElementById('btn-right');
 const btnDown = document.getElementById('btn-down');
 
-const ctx = c.getContext("2d");
-
 const width = c.offsetWidth;
-console.log("width:", width);
 const height = c.offsetHeight;
-console.log("height:", height);
 
 
 const WIDTH_BLOCK = width/COUNT_BLOCKS;
-console.log("block_width:", WIDTH_BLOCK);
 const HEIGHT_BLOCK = height/COUNT_BLOCKS;
-console.log("block_height:", HEIGHT_BLOCK);
 
 const MOVE = ((width + height) / 2) / COUNT_BLOCKS;
+
+const appleImage = new Image();
+const rectImage = new Image();
+
+appleImage.src = "heart.svg";
+rectImage.src = "rect2.svg";
+
+let moveX = 0;
+let moveY = 0;
+
 let score = 0;
+
+function setCanvasSize() {
+    if (viewportWidth > 490) {
+        c.width = SIZE_PC;
+        c.height = SIZE_PC;
+    
+    } else {
+        c.width = SIZE_PHONE;
+        c.height = SIZE_PHONE;
+    }
+}
+
 
 let snake = {
     blocks: [createBlock(WIDTH_BLOCK, HEIGHT_BLOCK)],
@@ -58,14 +64,10 @@ function createApple() {
     };
 }
 
-const appleImage = new Image();
-appleImage.src = "heart.svg";
 function drawApple(apple) {
     ctx.drawImage(appleImage, apple.posX, apple.posY, apple.width, apple.height);
 }
 
-const rectImage = new Image();
-rectImage.src = "rect2.svg";
 
 function generateNewApple(apple) {
     let status = true;
@@ -102,16 +104,9 @@ function increaseSnakeSize() {
 }
 
 function drawSnake(snake) {
-    //ctx.strokeStyle = "#ff809c";
     let idx = 0;
     for(let block of snake.blocks) {
-        if (idx != 0) {
-            //ctx.strokeStyle = "#ff1a4c";
-        }
-        //ctx.beginPath();
         ctx.drawImage(rectImage, block.posX, block.posY, WIDTH_BLOCK, HEIGHT_BLOCK);
-        //ctx.roundRect(block.posX, block.posY, WIDTH_BLOCK, HEIGHT_BLOCK, 5);
-        //ctx.stroke();
         idx++;
     }
 }
@@ -130,7 +125,6 @@ function relocateBlocks(x, y) {
 function checkHit() {
     const blocks = snake.blocks;
     const head = blocks.at(0);
-
 
     if (head.posX >= width || head.posX < 0 || head.posY >= height || head.posY < 0 ) {
         return true;
@@ -177,7 +171,6 @@ function update() {
         clearInterval(gameLoop);
         alert(`Your score: ${score}`);
         location.reload();
-        //return;
     }
     
     if (checkEat()) {
@@ -189,8 +182,6 @@ function update() {
     drawApple(apple);
     
 }
-let moveX = 0;
-let moveY = 0;
 function movement(event) {
     switch(event.code) {
         case "ArrowDown":
@@ -257,3 +248,9 @@ btnDown.addEventListener('click', function() {
         moveY = MOVE;
     }
 });
+
+
+window.addEventListener('resize', function() {
+    location.reload();
+});
+
