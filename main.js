@@ -13,9 +13,9 @@ if (viewportWidth > 490) {
     c.height = 500;
     
 } else {
-    c.width = 280;
-    c.height = 280;
-    COUNT_BLOCKS = 14;
+    c.width = 320;
+    c.height = 320;
+    COUNT_BLOCKS = 16;
 }
 
 window.addEventListener('resize', function() {
@@ -100,11 +100,11 @@ function increaseSnakeSize() {
 }
 
 function drawSnake(snake) {
-    ctx.strokeStyle = "pink";
+    ctx.strokeStyle = "#ff809c";
     let idx = 0;
     for(let block of snake.blocks) {
         if (idx != 0) {
-            ctx.strokeStyle = "purple";
+            ctx.strokeStyle = "#ff1a4c";
         }
         ctx.beginPath();
         ctx.roundRect(block.posX, block.posY, WIDTH_BLOCK, HEIGHT_BLOCK, 5);
