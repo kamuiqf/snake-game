@@ -5,12 +5,17 @@ let viewportWidth = window.innerWidth;
 let viewportHeight = window.innerHeight;
 console.log(`Viewport width: ${viewportWidth}, height: ${viewportHeight}`);
 
+
+let COUNT_BLOCKS = 20;
+
 if (viewportWidth > 490) {
     c.width = 500;
     c.height = 500;
+    
 } else {
     c.width = 280;
     c.height = 280;
+    COUNT_BLOCKS = 14;
 }
 
 window.addEventListener('resize', function() {
@@ -30,7 +35,6 @@ console.log("width:", width);
 const height = c.offsetHeight;
 console.log("height:", height);
 
-const COUNT_BLOCKS = 20;
 
 const WIDTH_BLOCK = width/COUNT_BLOCKS;
 console.log("block_width:", WIDTH_BLOCK);
