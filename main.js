@@ -15,7 +15,7 @@ if (viewportWidth > 490) {
 } else {
     c.width = 320;
     c.height = 320;
-    COUNT_BLOCKS = 16;
+    COUNT_BLOCKS = 10;
 }
 
 window.addEventListener('resize', function() {
@@ -65,6 +65,9 @@ function drawApple(apple) {
     ctx.drawImage(appleImage, apple.posX, apple.posY, apple.width, apple.height);
 }
 
+const rectImage = new Image();
+rectImage.src = "rect.svg";
+
 function generateNewApple(apple) {
     let status = true;
     while(status) {
@@ -100,15 +103,16 @@ function increaseSnakeSize() {
 }
 
 function drawSnake(snake) {
-    ctx.strokeStyle = "#ff809c";
+    //ctx.strokeStyle = "#ff809c";
     let idx = 0;
     for(let block of snake.blocks) {
         if (idx != 0) {
-            ctx.strokeStyle = "#ff1a4c";
+            //ctx.strokeStyle = "#ff1a4c";
         }
-        ctx.beginPath();
-        ctx.roundRect(block.posX, block.posY, WIDTH_BLOCK, HEIGHT_BLOCK, 5);
-        ctx.stroke();
+        //ctx.beginPath();
+        ctx.drawImage(rectImage, block.posX, block.posY, WIDTH_BLOCK, HEIGHT_BLOCK);
+        //ctx.roundRect(block.posX, block.posY, WIDTH_BLOCK, HEIGHT_BLOCK, 5);
+        //ctx.stroke();
         idx++;
     }
 }
