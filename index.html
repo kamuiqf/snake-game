@@ -51,10 +51,14 @@
 
 		.btn-up {
 			width: 100%;
+			display: flex;
+			justify-content: center;
 		}
 
 		.btn-down {
 			width: 100%;
+			display: flex;
+			justify-content: center;
 		}
 
 		.btn-left-right {
@@ -73,13 +77,22 @@
 			height: 50px;
 			padding: 5px;
 			border: none;
-			border-radius: 20px;
-			background-color: #2e282e77;
-			transition: 200ms;
+			border-radius: 25px;
+			background-color: #32323277;
+			transition: 100ms;
+			display: flex; /* Використання flexbox всередині кнопки */
+    		align-items: center; /* Вирівнювання картинки по вертикалі */
+    		justify-content: center; /* Вирівнювання картинки по горизонталі */
 		}
 
 		button:active {
-			background-color: rgb(90, 0, 99);
+			background-color: rgb(64, 50, 65);
+		}
+
+		img {
+			width: 20px;	
+			height: 20px;
+			user-select: none;
 		}
 
 		@media (max-width: 490px) {
@@ -89,7 +102,6 @@
 			}
 
 			.buttons {
-				text-align: center;
 				margin-top: 25px;
 				display: block;
 				width: 100%;
@@ -110,12 +122,12 @@
 				<canvas id="myCanvas"></canvas>
 			</div>
 			<div class="buttons">
-				<div class="btn-up"><button id="btn-up">🡡</button></div>	
+				<div class="btn-up"><button id="btn-up"><img src="arrow-up.svg" draggable="false"></button></div>	
 				<div class="btn-left-right">
-					<button id="btn-left">🡠</button>
-					<button id="btn-right">🡢</button>
+					<button id="btn-left"><img src="arrow-left.svg" draggable="false"></button>
+					<button id="btn-right"><img src="arrow-right.svg" draggable="false"></button>
 				</div>
-				<div class="btn-down"><button id="btn-down">🡣</button></div>	
+				<div class="btn-down"><button id="btn-down"><img src="arrow-down.svg" draggable="false"></button></div>	
 			</div>
 		</div>
 	</main>

@@ -81,6 +81,7 @@ function generateNewApple(apple) {
 }
 
 
+
 function createBlock(posX, posY) {
     return {
         posX,
@@ -149,9 +150,11 @@ function checkEat() {
 let apple = createApple();
 generateNewApple(apple);
 
+let gameLoop = undefined;
+
 window.onload = function() {
     document.addEventListener("keydown", movement);
-    setInterval(update, 1000/10);
+    gameLoop = setInterval(update, 1000/10);
 }
 
 function fillBoadr() {
@@ -168,8 +171,10 @@ function update() {
     drawSnake(snake);
     
     if (checkHit()) {
+        clearInterval(gameLoop);
         alert(`Your score: ${score}`);
-        return;
+        location.reload();
+        //return;
     }
     
     if (checkEat()) {
