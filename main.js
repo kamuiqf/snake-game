@@ -158,7 +158,7 @@ let gameLoop = undefined;
 
 window.onload = function() {
     document.addEventListener("keydown", movement);
-    gameLoop = setInterval(update, 1000/8);
+    gameLoop = setInterval(update, 1000/5);
 }
 
 function fillBoadr() {
