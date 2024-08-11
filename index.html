@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Game</title>
+
+	<style>
+		@font-face {
+  			font-family: Teko;
+  			src: url(Teko-Medium.woff2);
+		}
+
+		body {
+			background-color:#0d0d0d;
+		}
+
+		main {
+			position: relative;
+			display: flex;
+			width: 100%;
+			height: max-content;
+		}
+
+		.container {
+			margin: auto;
+		}
+		
+		.container-canvas {
+			width: 500px;
+			height: 500px;
+			text-align: left;
+			margin: auto;
+			border: 2px solid purple;
+			border-radius: 5px;
+			position: relative;
+			height: 100%;
+		}
+
+		.score-board {
+			color: #ffff;
+			font-family: Teko;
+		}
+		canvas {
+			border-radius: 3px;
+		}
+
+		.buttons {
+			display: none;
+		}
+
+		.btn-up {
+			width: 100%;
+		}
+
+		.btn-down {
+			width: 100%;
+		}
+
+		.btn-left-right {
+			width: 100%;
+			display: flex;
+			justify-content: space-around;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		button {
+			font-family: Teko;
+			font-size: 18px;
+			color: white;
+			width: 20%;
+			height: 50px;
+			padding: 5px;
+			border: none;
+			border-radius: 20px;
+			background-color: #2e282e77;
+			transition: 200ms;
+		}
+
+		button:active {
+			background-color: rgb(90, 0, 99);
+		}
+
+		@media (max-width: 490px) {
+			.container-canvas {
+				width: 280px;
+				height: 280px;
+			}
+
+			.buttons {
+				text-align: center;
+				margin-top: 25px;
+				display: block;
+				width: 100%;
+			}
+
+			.score-board {
+				font-size: 1.2rem;
+			}
+		}
+
+	</style>
+</head>
+<body>
+	<main>
+		<div class="container">
+			<h1 class="score-board">Score: <span id="score">0</span></h1>
+			<div class="container-canvas">
+				<canvas id="myCanvas"></canvas>
+			</div>
+			<div class="buttons">
+				<div class="btn-up"><button id="btn-up">🡡</button></div>	
+				<div class="btn-left-right">
+					<button id="btn-left">🡠</button>
+					<button id="btn-right">🡢</button>
+				</div>
+				<div class="btn-down"><button id="btn-down">🡣</button></div>	
+			</div>
+		</div>
+	</main>
+
+	<script src="main.js""></script>
+</body>
+</html>

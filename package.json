@@ -1,0 +1,11 @@
+{
+  "name": "js-snake-game",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node main.js"
+  },
+  "author": "kamui",
+  "license": "ISC",
+  "description": "" 
+}
