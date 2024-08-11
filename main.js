@@ -6,7 +6,7 @@ let viewportHeight = window.innerHeight;
 console.log(`Viewport width: ${viewportWidth}, height: ${viewportHeight}`);
 
 
-let COUNT_BLOCKS = 20;
+let COUNT_BLOCKS = 10;
 
 if (viewportWidth > 490) {
     c.width = 500;
@@ -15,7 +15,6 @@ if (viewportWidth > 490) {
 } else {
     c.width = 320;
     c.height = 320;
-    COUNT_BLOCKS = 10;
 }
 
 window.addEventListener('resize', function() {
@@ -60,13 +59,13 @@ function createApple() {
 }
 
 const appleImage = new Image();
-appleImage.src = "heart.png";
+appleImage.src = "heart.svg";
 function drawApple(apple) {
     ctx.drawImage(appleImage, apple.posX, apple.posY, apple.width, apple.height);
 }
 
 const rectImage = new Image();
-rectImage.src = "rect.svg";
+rectImage.src = "rect2.svg";
 
 function generateNewApple(apple) {
     let status = true;
@@ -158,7 +157,7 @@ let gameLoop = undefined;
 
 window.onload = function() {
     document.addEventListener("keydown", movement);
-    gameLoop = setInterval(update, 1000/5);
+    gameLoop = setInterval(update, 1000/7);
 }
 
 function fillBoadr() {
