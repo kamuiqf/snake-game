@@ -3,7 +3,7 @@ const c = document.getElementById("myCanvas");
 
 let viewportWidth = window.innerWidth;
 let viewportHeight = window.innerHeight;
-const SIZE_PC = 500;
+//const SIZE_PC = 500;
 const SIZE_PHONE = 320;
 
 setCanvasSize();
@@ -37,38 +37,49 @@ let moveY = 0;
 
 let score = 0;
 
+let snake = Snake();
+let apple = Apple();
+let gameLoop = undefined;
+
+generateNewApple(apple);
+
+const scoreEl = document.getElementById("score");
+
+
 function setCanvasSize() {
-    if (viewportWidth > 490) {
-        c.width = SIZE_PC;
-        c.height = SIZE_PC;
-    
-    } else {
-        c.width = SIZE_PHONE;
-        c.height = SIZE_PHONE;
+    if (viewportWidth <  490) {
+       c.width = SIZE_PHONE;
+       c.height = SIZE_PHONE;
+    }
+}
+
+function Snake() {
+    return {
+        blocks: [Block(WIDTH_BLOCK, HEIGHT_BLOCK)],
+        len: 1,
     }
 }
 
 
-let snake = {
-    blocks: [createBlock(WIDTH_BLOCK, HEIGHT_BLOCK)],
-    len: 1,
-    movement: undefined
+function Block(posX, posY) {
+    return {
+        posX,
+        posY
+    };
 }
 
-function createApple() {
+function Apple() {
     return {
         posX: 0,
         posY: 0,
-        width: WIDTH_BLOCK,
-        height: HEIGHT_BLOCK
     };
 }
 
 function drawApple(apple) {
-    ctx.drawImage(appleImage, apple.posX, apple.posY, apple.width, apple.height);
+    ctx.drawImage(appleImage, apple.posX, apple.posY, WIDTH_BLOCK, HEIGHT_BLOCK);
 }
 
-
+//Refactoring
 function generateNewApple(apple) {
     let status = true;
     while(status) {
@@ -86,29 +97,23 @@ function generateNewApple(apple) {
 
 
 
-function createBlock(posX, posY) {
-    return {
-        posX,
-        posY
-    };
-}
-
 function increaseSnakeSize() {
-    let x = snake.blocks.at(-1).posX;
-    let y = snake.blocks.at(-1).posY;
-
-
-    snake.blocks.push(createBlock(x + moveX,y + moveY));
+    const tail = snake.blocks.at(-1);
+    snake.blocks.push(Block(tail.posX + moveX, tail.posY + moveY));
     snake.len += 1;
-    console.log("len:", snake.len);
 }
 
 function drawSnake(snake) {
-    let idx = 0;
-    for(let block of snake.blocks) {
+    for(block of snake.blocks) {
         ctx.drawImage(rectImage, block.posX, block.posY, WIDTH_BLOCK, HEIGHT_BLOCK);
-        idx++;
     }
+}
+
+function move() {
+    const head = snake.blocks.at(0);
+    relocateBlocks(head.posX, head.posY);
+    head.posX += moveX;
+    head.posY += moveY;
 }
 
 function relocateBlocks(x, y) {
@@ -144,10 +149,6 @@ function checkEat() {
     return (apple.posX == head.posX && apple.posY == head.posY);
 }
 
-let apple = createApple();
-generateNewApple(apple);
-
-let gameLoop = undefined;
 
 window.onload = function() {
     document.addEventListener("keydown", movement);
@@ -160,7 +161,6 @@ function fillBoadr() {
 }
 
 
-const scoreEl = document.getElementById("score");
 
 function update() {
     fillBoadr();
@@ -182,6 +182,7 @@ function update() {
     drawApple(apple);
     
 }
+
 function movement(event) {
     switch(event.code) {
         case "ArrowDown":
@@ -211,14 +212,6 @@ function movement(event) {
     }
 }
 
-function move() {
-    const blocks = snake.blocks;
-    const head = blocks.at(0);
-    
-    relocateBlocks(snake.blocks.at(0).posX, snake.blocks.at(0).posY);
-    snake.blocks.at(0).posX += moveX;
-    snake.blocks.at(0).posY += moveY;
-}
 
 
 btnUp.addEventListener('click', function() {
