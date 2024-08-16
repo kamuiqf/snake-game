@@ -87,11 +87,6 @@ img {
 }
 
 @media (max-width: 490px) {
-  .container-canvas {
-      width: 320px;
-      height: 320px;
-  }
-
   .buttons {
       margin-top: 25px;
       display: block;
