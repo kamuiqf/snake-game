@@ -1,0 +1,105 @@
+@font-face {
+    font-family: Teko;
+    src: url(Teko-Medium.woff2);
+}
+
+body {
+  background-color:#0d0d0d;
+}
+
+main {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: max-content;
+}
+
+.container {
+  margin: auto;
+}
+
+.container-canvas {
+  width: 500px;
+  height: 500px;
+  text-align: left;
+  margin: auto;
+  border: 2px solid purple;
+  border-radius: 5px;
+  position: relative;
+  height: 100%;
+}
+
+.score-board {
+  color: #ffff;
+  font-family: Teko;
+}
+canvas {
+  border-radius: 3px;
+}
+
+.buttons {
+  display: none;
+}
+
+.btn-up {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-down {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-left-right {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  font-family: Teko;
+  font-size: 18px;
+  color: white;
+  width: 30%;
+  height: 70px;
+  padding: 5px;
+  border: none;
+  border-radius: 25px;
+  background-color: #32323277;
+  transition: 100ms;
+  display: flex; /* Використання flexbox всередині кнопки */
+  align-items: center; /* Вирівнювання картинки по вертикалі */
+  justify-content: center; /* Вирівнювання картинки по горизонталі */
+}
+
+button:active {
+  background-color: rgb(64, 50, 65);
+}
+
+img {
+  width: 20px;	
+  height: 20px;
+  user-select: none;
+}
+
+@media (max-width: 490px) {
+  .container-canvas {
+      width: 320px;
+      height: 320px;
+  }
+
+  .buttons {
+      margin-top: 25px;
+      display: block;
+      width: 100%;
+  }
+
+  .score-board {
+      font-size: 1.2rem;
+  }
+}

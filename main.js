@@ -27,10 +27,10 @@ const HEIGHT_BLOCK = height/COUNT_BLOCKS;
 const MOVE = ((width + height) / 2) / COUNT_BLOCKS;
 
 const appleImage = new Image();
-const rectImage = new Image();
+const bodyImage = new Image();
 
-appleImage.src = "heart.svg";
-rectImage.src = "rect2.svg";
+appleImage.src = "assets/heart.svg";
+bodyImage.src = "assets/body.svg";
 
 let moveX = 0;
 let moveY = 0;
@@ -79,7 +79,7 @@ function drawApple(apple) {
     ctx.drawImage(appleImage, apple.posX, apple.posY, WIDTH_BLOCK, HEIGHT_BLOCK);
 }
 
-//Refactoring
+//Fix me
 function generateNewApple(apple) {
     let status = true;
     while(status) {
@@ -100,12 +100,12 @@ function generateNewApple(apple) {
 function increaseSnakeSize() {
     const tail = snake.blocks.at(-1);
     snake.blocks.push(Block(tail.posX + moveX, tail.posY + moveY));
-    snake.len += 1;
+    snake.len++;
 }
 
 function drawSnake(snake) {
     for(block of snake.blocks) {
-        ctx.drawImage(rectImage, block.posX, block.posY, WIDTH_BLOCK, HEIGHT_BLOCK);
+        ctx.drawImage(bodyImage, block.posX, block.posY, WIDTH_BLOCK, HEIGHT_BLOCK);
     }
 }
 
@@ -117,15 +117,12 @@ function move() {
 }
 
 function relocateBlocks(x, y) {
-    let lastPosX = x;
-    let lastPosY = y;
-    
-    for(let i=1; i<snake.blocks.length; i++ ) {
-        [snake.blocks[i].posX, lastPosX] = [lastPosX, snake.blocks[i].posX];
-        [snake.blocks[i].posY, lastPosY] = [lastPosY, snake.blocks[i].posY];
+    for(let i = 1; i < snake.len; i++) {
+        let block = snake.blocks[i];
+        [block.posX, x] = [x, block.posX];
+        [block.posY, y] = [y, block.posY];
     }
 }
-
 
 function checkHit() {
     const blocks = snake.blocks;
@@ -136,7 +133,8 @@ function checkHit() {
     } 
 
     for (let i = 1; i < blocks.length; i++) {
-        if (blocks[i].posX == head.posX && blocks[i].posY == head.posY) {
+        let block = blocks[i];
+        if (block.posX == head.posX && block.posY == head.posY) {
             return true;
         }
     }
