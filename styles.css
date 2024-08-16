@@ -65,8 +65,8 @@ button {
   font-family: Teko;
   font-size: 18px;
   color: white;
-  width: 30%;
-  height: 70px;
+  width: 20%;
+  height: 50px;
   padding: 5px;
   border: none;
   border-radius: 25px;
@@ -87,7 +87,7 @@ img {
   user-select: none;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 490px) {
   .container-canvas {
       width: 320px;
       height: 320px;
