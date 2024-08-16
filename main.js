@@ -48,7 +48,7 @@ const scoreEl = document.getElementById("score");
 
 function setCanvasSize() {
     console.log("viewPortWidth:", viewportWidth);
-    if (viewportWidth <=  490) {
+    if (viewportWidth <  490) {
        c.width = SIZE_PHONE;
        c.height = SIZE_PHONE;
     }

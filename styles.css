@@ -19,8 +19,6 @@ main {
 }
 
 .container-canvas {
-  width: 500px;
-  height: 500px;
   text-align: left;
   margin: auto;
   border: 2px solid purple;
@@ -33,6 +31,7 @@ main {
   color: #ffff;
   font-family: Teko;
 }
+
 canvas {
   border-radius: 3px;
 }
