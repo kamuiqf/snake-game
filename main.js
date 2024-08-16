@@ -45,6 +45,8 @@ generateNewApple(apple);
 
 const scoreEl = document.getElementById("score");
 
+console.log("canvas w: ", c.offsetWidth);
+console.log("canvas h:", c.offsetHeight);
 
 function setCanvasSize() {
     console.log("viewPortWidth:", viewportWidth);
