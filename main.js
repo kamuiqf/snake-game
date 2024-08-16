@@ -4,7 +4,7 @@ const c = document.getElementById("myCanvas");
 let viewportWidth = window.innerWidth;
 let viewportHeight = window.innerHeight;
 //const SIZE_PC = 500;
-const SIZE_PHONE = 320;
+const SIZE_PHONE = 500; //320
 
 setCanvasSize();
 
@@ -50,7 +50,7 @@ console.log("canvas h:", c.offsetHeight)
 
 function setCanvasSize() {
     console.log("viewPortWidth:", viewportWidth);
-    if (viewportWidth < 490) {
+    if (viewportWidth > 490) {
        c.width = SIZE_PHONE;
        c.height = SIZE_PHONE;
     }
