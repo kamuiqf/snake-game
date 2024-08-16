@@ -87,7 +87,7 @@ img {
   user-select: none;
 }
 
-@media (max-width: 490px) {
+@media (max-width: 520px) {
   .container-canvas {
       width: 320px;
       height: 320px;
