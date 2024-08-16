@@ -47,7 +47,7 @@ const scoreEl = document.getElementById("score");
 
 
 function setCanvasSize() {
-    if (viewportWidth <  490) {
+    if (viewportWidth < 490) {
        c.width = SIZE_PHONE;
        c.height = SIZE_PHONE;
     }
@@ -94,8 +94,6 @@ function generateNewApple(apple) {
         }
     }
 }
-
-
 
 function increaseSnakeSize() {
     const tail = snake.blocks.at(-1);
