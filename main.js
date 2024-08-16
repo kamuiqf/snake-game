@@ -126,13 +126,13 @@ function relocateBlocks(x, y) {
 
 function checkHit() {
     const blocks = snake.blocks;
-    const head = blocks.at(0);
+    const head = blocks[0];
 
     if (head.posX >= width || head.posX < 0 || head.posY >= height || head.posY < 0 ) {
         return true;
     } 
 
-    for (let i = 1; i < blocks.length; i++) {
+    for (let i = 1; i < snake.len; i++) {
         let block = blocks[i];
         if (block.posX == head.posX && block.posY == head.posY) {
             return true;
@@ -143,7 +143,7 @@ function checkHit() {
 
 
 function checkEat() {
-    const head = snake.blocks.at(0);
+    const head = snake.blocks[0];
     return (apple.posX == head.posX && apple.posY == head.posY);
 }
 
