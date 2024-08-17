@@ -3,8 +3,7 @@ const c = document.getElementById("myCanvas");
 
 let viewportWidth = window.innerWidth;
 let viewportHeight = window.innerHeight;
-//const SIZE_PC = 500;
-const SIZE_PHONE = 500; //320
+const SIZE_PC = 500;
 
 setCanvasSize();
 
@@ -45,14 +44,11 @@ generateNewApple(apple);
 
 const scoreEl = document.getElementById("score");
 
-console.log("canvas w: ", c.offsetWidth);
-console.log("canvas h:", c.offsetHeight)
 
 function setCanvasSize() {
-    console.log("viewPortWidth:", viewportWidth);
     if (viewportWidth > 490) {
-       c.width = SIZE_PHONE;
-       c.height = SIZE_PHONE;
+       c.width = SIZE_PC;
+       c.height = SIZE_PC;
     }
 }
 
@@ -62,7 +58,6 @@ function Snake() {
         len: 1,
     }
 }
-
 
 function Block(posX, posY) {
     return {
@@ -126,22 +121,20 @@ function relocateBlocks(x, y) {
 }
 
 function checkHit() {
-    const blocks = snake.blocks;
-    const head = blocks[0];
+    const head = snake.blocks[0];
 
     if (head.posX >= width || head.posX < 0 || head.posY >= height || head.posY < 0 ) {
         return true;
     } 
 
     for (let i = 1; i < snake.len; i++) {
-        let block = blocks[i];
+        let block = snake.blocks[i];
         if (block.posX == head.posX && block.posY == head.posY) {
             return true;
         }
     }
     return false;
 }
-
 
 function checkEat() {
     const head = snake.blocks[0];
@@ -158,8 +151,6 @@ function fillBoadr() {
     ctx.fillStyle = "black";
     ctx.fillRect(0,0, width, height);
 }
-
-
 
 function update() {
     fillBoadr();
@@ -182,67 +173,58 @@ function update() {
     
 }
 
+
 function movement(event) {
     switch(event.code) {
         case "ArrowDown":
-            if (moveY != -MOVE || snake.len == 1) {
-                moveX = 0;
-                moveY = MOVE;
-            }
+            moveDown();
             break;
-        case "ArrowUp":
-            if (moveY != MOVE || snake.len == 1) {
-                moveX = 0;
-                moveY = MOVE * (-1);
-            }
+            case "ArrowUp":
+                moveUp();
+                break;
+                case "ArrowRight":
+            moveRight();
             break;
-        case "ArrowRight":
-            if (moveX != -MOVE || snake.len == 1) {
-                moveX = MOVE;
-                moveY = 0;
-            }
-            break;
-        case "ArrowLeft":
-            if (moveX !== MOVE || snake.len == 1) {
-                moveX = MOVE * (-1);
-                moveY = 0;
-            }
+            case "ArrowLeft":
+                moveLeft();
             break;
     }
 }
 
-
-
-btnUp.addEventListener('click', function() {
-     if (moveY != MOVE || snake.len == 1) {
-        moveX = 0;
-        moveY = MOVE * (-1);
-    }
-});
-
-btnLeft.addEventListener('click', function() {
-    if (moveX !== MOVE || snake.len == 1) {
-        moveX = MOVE * (-1);
-        moveY = 0;
-    }
-});
-
-btnRight.addEventListener('click', function() {
-     if (moveX != -MOVE || snake.len == 1) {
-        moveX = MOVE;
-        moveY = 0;
-    }
-});
-
-btnDown.addEventListener('click', function() {
-     if (moveY != -MOVE || snake.len == 1) {
-        moveX = 0;
-        moveY = MOVE;
-    }
-});
-
+btnUp.addEventListener('click', moveUp);
+btnLeft.addEventListener('click', moveLeft);
+btnRight.addEventListener('click', moveRight);
+btnDown.addEventListener('click', moveDown);
 
 window.addEventListener('resize', function() {
     location.reload();
 });
 
+
+function moveDown() {
+    if (moveY != -MOVE || snake.len == 1) {
+        moveX = 0;
+        moveY = MOVE;
+    }
+}
+
+function moveUp() {
+    if (moveY != MOVE || snake.len == 1) {
+        moveX = 0;
+        moveY = MOVE * (-1);
+    }
+}
+
+function moveRight() {
+    if (moveX != -MOVE || snake.len == 1) {
+        moveX = MOVE;
+        moveY = 0;
+    }
+}
+
+function moveLeft() {
+    if (moveX !== MOVE || snake.len == 1) {
+        moveX = MOVE * (-1);
+        moveY = 0;
+    }
+}
